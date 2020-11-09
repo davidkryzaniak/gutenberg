@@ -33,7 +33,7 @@ const GlobalStylesContext = createContext( {
 	setSetting: ( context, path, newValue ) => {},
 	getStyleProperty: ( context, propertyName ) => {},
 	setStyleProperty: ( context, propertyName, newValue ) => {},
-	globalContext: {},
+	contexts: {},
 	/* eslint-enable no-unused-vars */
 } );
 
