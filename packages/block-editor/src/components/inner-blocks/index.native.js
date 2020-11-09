@@ -21,6 +21,7 @@ import BlockList from '../block-list';
 import { useBlockEditContext } from '../block-edit/context';
 import useBlockSync from '../provider/use-block-sync';
 import { BlockContextProvider } from '../block-context';
+import { defaultLayout, LayoutProvider } from './layout';
 
 /**
  * This hook is used to lightly mark an element as an inner blocks wrapper
@@ -88,6 +89,7 @@ function UncontrolledInnerBlocks( props ) {
 		marginHorizontal,
 		horizontalAlignment,
 		filterInnerBlocks,
+		__experimentalLayout: layout = defaultLayout,
 		numColumns,
 	} = props;
 
@@ -132,9 +134,11 @@ function UncontrolledInnerBlocks( props ) {
 		const context = getBlockContext( block.attributes, blockType );
 
 		blockList = (
-			<BlockContextProvider value={ context }>
-				{ blockList }
-			</BlockContextProvider>
+			<LayoutProvider value={ layout }>
+				<BlockContextProvider value={ context }>
+					{ blockList }
+				</BlockContextProvider>
+			</LayoutProvider>
 		);
 	}
 
